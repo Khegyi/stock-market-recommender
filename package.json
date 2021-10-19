@@ -1,0 +1,36 @@
+{
+  "name": "stock-market-recommender",
+  "description": "",
+  "version": "1.0.0",
+  "main": "scripts.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "http-server": "^13.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khegyi/stock-market-recommender.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Khegyi/stock-market-recommender/issues"
+  },
+  "homepage": "https://github.com/Khegyi/stock-market-recommender#readme",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  }
+}
