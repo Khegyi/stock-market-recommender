@@ -127,8 +127,14 @@ const handleSubmit = () => {
   const algorithm = document.getElementById("algorithm").value;
   let recTable = [];
 
+  const dayDef =
+    ((parseDate(fromDateStr) - parseDate(toDateStr)) * -1) / 3600 / 1000 / 24 +
+    1;
+
   if (parseDate(fromDateStr) > parseDate(toDateStr)) {
     alert("From Date cannot be later, than To Date");
+  } else if (dayDef > 90) {
+    alert("Time window cannot be larger than 90 days");
   } else {
     for (
       var date = parseDate(fromDateStr);
