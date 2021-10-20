@@ -3,7 +3,7 @@ import {
   stockPriceGenerator,
   socialMediaCountGenerator,
   recommendationAlgorithm,
-} from "../methods";
+} from "../scripts/methods";
 
 test("convert String to Date", () => {
   const testResDate = new Date("2020-07-07T22:00:00.000Z");

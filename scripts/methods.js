@@ -1,3 +1,4 @@
+import randomPostGenerator from "./apiCalls";
 const parseDate = (str) => {
   const ymd = str.split("-");
   return new Date(ymd[0], ymd[1] - 1, ymd[2]);
@@ -15,9 +16,15 @@ const stockPriceGenerator = (stckSymbol, priceDate) => {
     stockSymbol: stckSymbol,
   };
 };
+
 const socialMediaCountGenerator = (stckSymbol, smType) => {
   const smCount = Math.floor(Math.random() * 1000);
-  return { socialMediaType: smType, count: smCount, stockSymbol: stckSymbol };
+
+  return {
+    socialMediaType: smType,
+    count: smCount,
+    stockSymbol: stckSymbol,
+  };
 };
 const recommendationAlgorithm = (
   stckPrice,
@@ -119,6 +126,47 @@ function displayRecommendations(resultList, stockSymbol) {
   });
 }
 
+function handleMorePostReq() {
+  displayScmPosts(2, false);
+}
+
+const displayScmPosts = (quantity, clearing) => {
+  const scmPostCont = document.getElementById("social_posts");
+
+  if (clearing) {
+    scmPostCont.innerHTML = "";
+  }
+  for (let i = 0; i < quantity; i++) {
+    randomPostGenerator().then((scmPost) => {
+      const post = document.createElement("div");
+      post.classList.add("scm_post");
+
+      const title = document.createElement("h3");
+      title.classList.add("scm_title");
+      title.textContent = scmPost.title;
+
+      const content = document.createElement("p");
+      content.classList.add("scm_content");
+      content.textContent = scmPost.content;
+
+      const author = document.createElement("p");
+      author.classList.add("scm_author");
+      author.textContent = scmPost.author;
+
+      const date = document.createElement("p");
+      date.classList.add("scm_date");
+      date.textContent = stringifyDate(scmPost.timestamp);
+
+      post.append(title);
+      post.append(content);
+      post.append(author);
+      post.append(date);
+
+      scmPostCont.append(post);
+    });
+  }
+};
+
 const handleSubmit = () => {
   const fromDateStr = document.getElementById("from_date").value;
   const toDateStr = document.getElementById("to_date").value;
@@ -149,6 +197,7 @@ const handleSubmit = () => {
       recTable.push(recomandation);
     }
     displayRecommendations(recTable, stockSymbol);
+    displayScmPosts(2, true);
   }
 };
 
@@ -159,4 +208,5 @@ export {
   socialMediaCountGenerator,
   recommendationAlgorithm,
   handleSubmit,
+  handleMorePostReq,
 };
