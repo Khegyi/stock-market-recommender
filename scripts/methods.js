@@ -101,7 +101,7 @@ function displayRecommendations(resultList, stockSymbol) {
     prc.classList.add("prc");
 
     const date = document.createElement("td");
-    date.textContent = recommend.recommendDate;
+    date.textContent = recommend.recommendDate.replace(/-/g, ".");
     date.classList.add("date");
 
     tr.append(date);
